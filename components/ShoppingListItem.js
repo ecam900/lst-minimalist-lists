@@ -1,12 +1,11 @@
 import { makeStyles, Typography } from '@material-ui/core';
 import { purpSquare as PurpSquare } from '../public/purpSquare.svg';
-import { yellowSquare as YellowSquare } from '../public/yellowSquare.svg';
-import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    marginLeft: '15%',
+    paddingLeft: '5%',
+    paddingRight: '5%',
     marginBottom: '.5rem',
     width: '100%',
     '&:hover': {
@@ -17,20 +16,30 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '.5rem',
     marginTop: '.1rem',
   },
+  title: {
+    fontWeight: 'bold',
+  },
 }));
 
-const ListItem = ({ title, type }) => {
+const ShoppingListItem = ({ title, complete }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <div className={classes.bulletWrapper}>
-        {type === 'idea' ? <YellowSquare /> : <PurpSquare />}
+        <PurpSquare />
       </div>
-      <Typography variant='body1' style={{ fontWeight: 'bold' }}>
+      <Typography
+        variant='body1'
+        className={classes.title}
+        style={{
+          textDecoration: complete ? 'line-through' : 'none',
+          color: complete ? 'grey' : '',
+        }}
+      >
         {title}
       </Typography>
     </div>
   );
 };
 
-export default ListItem;
+export default ShoppingListItem;
