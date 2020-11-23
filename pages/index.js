@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
   bottomSection: {
     marginTop: 'auto',
-    height: '10vh',
+    height: '10%',
     display: 'flex',
     position: 'relative',
   },
