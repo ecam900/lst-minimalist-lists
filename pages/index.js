@@ -3,6 +3,7 @@ import Head from 'next/head';
 import ListComponent from '../components/ListComponent';
 import LST_logo from '../public/LST_logo.svg';
 import { rectangleOutline as RectangleOutline } from '../public/rectangleOutline.svg';
+import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   headerText: {
     fontFamily: "'Dosis', 'Arial'",
-    fontSize: '24px',
+    fontSize: '1.5rem',
   },
   bottomSection: {
     marginTop: 'auto',
@@ -50,11 +51,15 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     bottom: '5%',
     right: '15px',
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
 }));
 
 export default function Home() {
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <div className={classes.logoWrapper}>
@@ -75,9 +80,11 @@ export default function Home() {
       </div>
       <div className={classes.bottomSection}>
         <RectangleOutline className={classes.rectangleOutline} />
-        <Typography align='right' className={classes.newButton}>
-          NEW
-        </Typography>
+        <Link href='/create-list'>
+          <Typography align='right' className={classes.newButton}>
+            <a>NEW</a>
+          </Typography>
+        </Link>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { makeStyles, Typography } from '@material-ui/core';
-import ChooseTypeItem from '../../components/ChooseTypeItem';
+import Link from 'next/link';
 import LST_logo from '../../public/LST_logo.svg';
 import { LST_rectangle_yellow as LSTRectangle } from '../../public/LST_rectangle_yellow.svg';
 import { SHP_rectangle_purps as SHPRectangle } from '../../public/SHP_rectangle_purps.svg';
@@ -45,7 +45,12 @@ const useStyles = makeStyles((theme) => ({
     },
     // backgroundColor: 'red',
   },
-  typeItem: { marginBottom: '8%', position: 'relative', height: 'auto' },
+  typeItem: {
+    marginBottom: '8%',
+    position: 'relative',
+    height: 'auto',
+    '&:hover': { cursor: 'pointer' },
+  },
   typeItemText: {
     fontWeight: 'bold',
     zIndex: 2,
@@ -77,22 +82,26 @@ const ChooseType = () => {
           </Typography>
         </div>
         <div className={classes.typeSelectionSection}>
-          <div className={classes.typeItem}>
-            <Typography variant='h5' className={classes.typeItemText}>
-              Ideas & Tasks
-            </Typography>
-            <div className={classes.svgLineWrapper}>
-              <LSTRectangle className={classes.svgLine} />
+          <Link href='/create-list/ideate'>
+            <div className={classes.typeItem}>
+              <Typography variant='h5' className={classes.typeItemText}>
+                Ideas & Tasks
+              </Typography>
+              <div className={classes.svgLineWrapper}>
+                <LSTRectangle className={classes.svgLine} />
+              </div>
             </div>
-          </div>
-          <div className={classes.typeItem}>
-            <Typography variant='h5' className={classes.typeItemText}>
-              Shopping
-            </Typography>
-            <div className={classes.svgLineWrapper}>
-              <SHPRectangle className={classes.svgLine} />
+          </Link>
+          <Link href='/create-list/shop-list'>
+            <div className={classes.typeItem}>
+              <Typography variant='h5' className={classes.typeItemText}>
+                Shopping
+              </Typography>
+              <div className={classes.svgLineWrapper}>
+                <SHPRectangle className={classes.svgLine} />
+              </div>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </div>

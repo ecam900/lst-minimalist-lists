@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
       width: '70vw',
       maxWidth: '70vw',
     },
+    height: 'auto',
   },
   purpLines: {
     width: '100%',

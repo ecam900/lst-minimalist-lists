@@ -6,7 +6,7 @@ import React from 'react';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    marginLeft: '15%',
+    marginLeft: '5%',
     marginBottom: '.5rem',
     width: '100%',
     '&:hover': {
@@ -17,6 +17,10 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '.5rem',
     marginTop: '.1rem',
   },
+  listText: {
+    fontWeight: 'bold',
+    fontSize: '1.1rem',
+  },
 }));
 
 const ListItem = ({ title, type }) => {
@@ -26,7 +30,7 @@ const ListItem = ({ title, type }) => {
       <div className={classes.bulletWrapper}>
         {type === 'idea' ? <YellowSquare /> : <PurpSquare />}
       </div>
-      <Typography variant='body1' style={{ fontWeight: 'bold' }}>
+      <Typography variant='body1' className={classes.listText}>
         {title}
       </Typography>
     </div>
