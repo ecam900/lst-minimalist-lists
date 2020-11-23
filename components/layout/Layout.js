@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   layoutRoot: {
-    height: '100vh',
+    height: '95vh',
     width: '100%',
     overflow: 'hidden',
     display: 'flex',
