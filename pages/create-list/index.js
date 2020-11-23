@@ -21,10 +21,12 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '30vh',
   },
   contentSection: {
+    height: 'auto',
     minHeight: '70vh',
   },
   headerSection: {
     marginTop: '2rem',
+    height: 'auto',
     minHeight: '5vh',
   },
   headerText: {
