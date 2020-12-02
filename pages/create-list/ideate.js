@@ -1,12 +1,15 @@
 import {
+  Button,
   makeStyles,
   TextField,
   Typography,
   withStyles,
 } from '@material-ui/core';
 import React from 'react';
+import Link from 'next/link';
 import { LST_logo as Logo } from '../../public/LST_logo.svg';
 import { yellowLines as YellowLines } from '../../public/yellowLines.svg';
+import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
       width: '70vw',
       maxWidth: '70vw',
     },
-    // backgroundColor: 'red',
   },
   yellowLinesWrapper: {
     position: 'absolute',
@@ -88,16 +90,44 @@ const CustomTextField = withStyles({
 
 const Ideate = () => {
   const classes = useStyles();
+  const [title, setTitle] = useState('');
+
+  const handleChange = (e) => {
+    if (title.length <= 100) {
+      setTitle(e.target.value);
+    } else {
+      alert('Title must not be longer than 100 characters.');
+      setTitle(title.slice(0, 99));
+    }
+  };
   return (
     <div className={classes.root}>
-      <div className={classes.header}>
-        <Logo className={classes.logo} />
-      </div>
-      <div className={classes.content}>
-        <CustomTextField multiline fullWidth />
-        <div>
-          <Typography variant='caption'>name your list</Typography>
+      <Link href='/'>
+        <div className={classes.header}>
+          <Logo className={classes.logo} />
         </div>
+      </Link>
+      <div className={classes.content}>
+        <CustomTextField
+          multiline
+          fullWidth
+          value={title}
+          onChange={handleChange}
+        />
+        <div>
+          <Typography variant='body1'>name your list</Typography>
+        </div>
+
+        {title !== '' && (
+          <div>
+            <Button
+              variant='outlined'
+              style={{ color: '#ffcf3d', borderColor: '#ffcf3d' }}
+            >
+              <Typography variant='h4'>DONE</Typography>
+            </Button>
+          </div>
+        )}
       </div>
       <div className={classes.yellowLinesWrapper}>
         <YellowLines className={classes.yellowLines} />

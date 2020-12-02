@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: 'auto',
     maxHeight: '30vh',
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
   contentSection: {
     height: 'auto',
@@ -43,13 +46,14 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('lg')]: {
       width: '50%',
     },
-    // backgroundColor: 'red',
   },
   typeItem: {
     marginBottom: '8%',
     position: 'relative',
     height: 'auto',
     '&:hover': { cursor: 'pointer' },
+    // backgroundColor: 'red',
+    width: 'auto',
   },
   typeItemText: {
     fontWeight: 'bold',
@@ -59,7 +63,6 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     bottom: '-5%',
     width: 'auto',
-    // backgroundColor: 'red',
     zIndex: -1,
   },
   svgLine: {
@@ -71,9 +74,11 @@ const ChooseType = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <div className={classes.logoWrapper}>
-        <LST_logo className={classes.logo} />
-      </div>
+      <Link href='/'>
+        <div className={classes.logoWrapper}>
+          <LST_logo className={classes.logo} />
+        </div>
+      </Link>
 
       <div className={classes.contentSection}>
         <div className={classes.headerSection}>

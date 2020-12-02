@@ -4,6 +4,8 @@ import ListComponent from '../components/ListComponent';
 import LST_logo from '../public/LST_logo.svg';
 import { rectangleOutline as RectangleOutline } from '../public/rectangleOutline.svg';
 import Link from 'next/link';
+import { useLists } from '../lib/listsContext';
+import { useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,6 +61,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home() {
   const classes = useStyles();
+  const list = useLists();
+
+  useEffect(() => {
+    console.log('List name:');
+    console.log(list.name);
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -77,6 +85,7 @@ export default function Home() {
       </div>
       <div className={classes.listsSection}>
         <ListComponent />
+        <div>Name: {list.name}</div>
       </div>
       <div className={classes.bottomSection}>
         <RectangleOutline className={classes.rectangleOutline} />

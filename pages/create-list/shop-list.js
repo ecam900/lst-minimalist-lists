@@ -1,12 +1,16 @@
 import {
+  Button,
   makeStyles,
   TextField,
   Typography,
   withStyles,
 } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
+import { useLists } from '../../lib/listsContext';
 import { LST_logo as Logo } from '../../public/LST_logo.svg';
 import { purpLines as PurpLines } from '../../public/purpLines.svg';
+import { INITIALIZE_IDEATE_LIST } from '../../lib/reducers/listsReducerTypes';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -88,18 +92,53 @@ const CustomTextField = withStyles({
 
 const ShopList = () => {
   const classes = useStyles();
+  const [title, setTitle] = useState('');
+  const list = useLists();
+  const router = useRouter();
+
+  const { dispatch } = list;
+
+  const handleChange = (e) => {
+    if (title.length <= 100) {
+      setTitle(e.target.value);
+    } else {
+      alert('Title must not be longer than 100 characters.');
+      setTitle(title.slice(0, 99));
+    }
+  };
+
+  const handleDone = () => {
+    dispatch({ action: INITIALIZE_IDEATE_LIST, payload: title });
+    // router.push('/');
+    console.log(`Title is ${title} and was dispatched...`);
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.header}>
         <Logo className={classes.logo} />
       </div>
       <div className={classes.content}>
-        <CustomTextField multiline fullWidth />
+        <CustomTextField
+          multiline
+          fullWidth
+          value={title}
+          onChange={handleChange}
+        />
         <div>
-          <Typography variant='caption'>
-            name shopping your list
-          </Typography>
+          <Typography variant='body1'>name shopping your list</Typography>
         </div>
+        {title !== '' && (
+          <div>
+            <Button
+              variant='outlined'
+              style={{ color: '#612bf3', borderColor: '#612bf3' }}
+              onClick={handleDone}
+            >
+              <Typography variant='h4'>DONE</Typography>
+            </Button>
+          </div>
+        )}
       </div>
       <div className={classes.purpLinesWrapper}>
         <PurpLines className={classes.purpLines} />

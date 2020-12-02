@@ -7,6 +7,7 @@ import { AuthProvider } from '../lib/auth';
 import AuthGuard from '../lib/AuthGuard';
 import Layout from '../components/layout/Layout';
 import React from 'react';
+import { ProvideLists } from '../lib/listsContext';
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
@@ -35,9 +36,13 @@ export default function MyApp(props) {
       <ThemeProvider theme={theme}>
         {/* Firebase Auth */}
         <AuthProvider>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <AuthGuard>{getLayout(<Component {...pageProps} />)}</AuthGuard>
+          <ProvideLists>
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            <AuthGuard>
+              {getLayout(<Component {...pageProps} />)}
+            </AuthGuard>
+          </ProvideLists>
         </AuthProvider>
       </ThemeProvider>
     </React.Fragment>
